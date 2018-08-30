@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour {
     void ThreeDMove()
     {
         _moveVec = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        if(_moveVec.magnitute > 1)
+        if(_moveVec.magnitude > 1)
         {
             _moveVec.Normalize();
         }
