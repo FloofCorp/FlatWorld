@@ -8,77 +8,38 @@ public class Movement : MonoBehaviour {
     private CharacterController _charCon;
     private Vector3 _moveVec;
     private string _state;
-    private float gravityValue = 8.5f;
+    private float gravityValue = 19f;
 
-	// Use this for initialization
-	void Start () {
+    private void Start()
+    {
         _charCon = GetComponent<CharacterController>();
-        _state = "default";
-
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        switch (_state)
-        {
-            case "3D":
-                ThreeDMove();
-                break;
-            default:
-                DefaultMove();
-                break;
-        }
-        Jump();
-        Gravity();
-        _charCon.Move(_moveVec);
-        //Alternating between movement styles
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            ShiftMove();
-        }
-    }    
-    void DefaultMove()
-    {
-        _moveVec = new Vector3(Input.GetAxis("Horizontal") * _moveSpeed, 0,0);
-        _moveVec *= Time.deltaTime;
-    }
-    void ThreeDMove()
-    {
-        _moveVec = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        if(_moveVec.magnitude > 1)
-        {
-            _moveVec.Normalize();
-        }
-        //Found an issue that would collide with gravity and physics in general. This is the easiest fix I can ssume for now
+        //restart the movement
+        _moveVec = Vector3.zero;
+        //Take input
+        _moveVec = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+        //Taking the move speed
         _moveVec.x *= _moveSpeed;
-        _moveVec.z *= _moveSpeed;
+        ApplyGravity();
         _moveVec *= Time.deltaTime;
+
+        _charCon.Move(_moveVec);
     }
-    void Jump()
-    {
-        if(Input.GetAxis("Jump") > 0 && _charCon.isGrounded)
-        {
-            _moveVec.y += Input.GetAxis("Jump") * _jumpSpeed;
-        }
-    }
-    void Gravity()
+    private void ApplyGravity()
     {
         if (!_charCon.isGrounded)
         {
             _moveVec.y -= gravityValue * Time.deltaTime;
         }
     }
-    public void ShiftMove()
+    private void Jump()
     {
-        if(_state == "default")
+        if(Input.GetAxis("Jump") > 0 && _charCon.isGrounded)
         {
-            _state = "3D";
-        }
-        else
-        {
-            _state = "default";
+
         }
     }
-    
+
 }

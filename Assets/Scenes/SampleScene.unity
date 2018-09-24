@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14ee5d96f2c1354dbcbec80f20e8a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 6
   _jumpSpeed: 4
 --- !u!1 &170076733
 GameObject:
@@ -389,7 +389,7 @@ MonoBehaviour:
   _playerMove: {fileID: 0}
   _target: {fileID: 0}
   _timeDilation: 4
-  _zOffset: 5
+  _zOffset: 8
 --- !u!1 &1636447823
 GameObject:
   m_ObjectHideFlags: 0
