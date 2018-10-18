@@ -81,14 +81,7 @@ public class Grid : MonoBehaviour {
         }
     }
 
-    //Is Column Shortest ?
-    public static bool isColMin(int x)
-    {
-        for (int x = 0; x < w; ++x)
-            if (grid[x, y] == null)
-                return false;
-        return true;
-    }
+
 
 
 }
