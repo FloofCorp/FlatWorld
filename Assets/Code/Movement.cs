@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,14 +12,17 @@ public class Movement : MonoBehaviour {
     private Vector3 _moveVec;
     private string _state;
     private bool _facingRight;
+
+    public bool IsGrounded;
     
 
-    private void Start()
+    private void Awake()
     {
-        _charCon = GetComponent<CharacterController>();
+        _charCon = gameObject.GetComponent<CharacterController>();
     }
     private void Update()
     {
+        ApplyGravity();
         //Take input
         if (_charCon.isGrounded)
         {
@@ -31,18 +35,39 @@ public class Movement : MonoBehaviour {
                 _facingRight = false;
             }
                 _moveVec = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
+            if(Input.GetAxis("Jump") > 0)
+            {
+                Jump();
+            }
             _moveVec.x *= _moveSpeed;
         }
         //Taking the move speed
-        ApplyGravity();
-        Jump();
         AirDash();
         _moveVec *= Time.deltaTime;
         _charCon.Move(_moveVec);
     }
+
+    private void Jump()
+    {
+        _moveVec.y += _jumpSpeed * Time.deltaTime;
+        IsGrounded = false;
+    }
+
+    private void ApplyGravity()
+    {
+        if(_charCon.isGrounded == false)
+        {
+            _moveVec.y += _gravity;
+        }
+        if (_charCon.isGrounded)
+        {
+            IsGrounded = true;
+        }
+    }
+
     private void AirDash()
     {
-        if (!_charCon.isGrounded)
+        if (IsGrounded == false)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -56,24 +81,5 @@ public class Movement : MonoBehaviour {
                 }
             }
         }
-        if (_charCon.isGrounded)
-        {
-
-        }
     }
-    private void ApplyGravity()
-    {
-        if (!_charCon.isGrounded)
-        {
-            _moveVec.y += _gravity;
-        }
-    }
-    private void Jump()
-    {
-        if(Input.GetAxis("Jump") > 0 && _charCon.isGrounded)
-        {
-            _moveVec.y += Input.GetAxis("Jump") * _jumpSpeed * Time.deltaTime;
-        }
-    }
-
 }
