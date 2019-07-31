@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PMController)]
+[RequireComponent(typeof(PMController))]
 public class PMMotor : MonoBehaviour {
     public Vector3 moveVector;
 
