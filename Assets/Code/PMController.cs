@@ -20,13 +20,15 @@ public class PMController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         motor.UpdateMotor();
+        GetLocomotionInput();
+        CharCon.Move(motor.moveVector);
 	}
     void GetLocomotionInput()
     {
         motor.moveVector = Vector3.zero;
         if(Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0)
         {
-            motor.moveVector += new Vector3(0, 0, Input.GetAxis("Horizontal"));
+            motor.moveVector += new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         }
     }
 }
