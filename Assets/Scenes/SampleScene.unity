@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -125,13 +125,26 @@ GameObject:
   - component: {fileID: 15004137}
   - component: {fileID: 15004136}
   - component: {fileID: 15004135}
+  - component: {fileID: 15004140}
+  - component: {fileID: 15004134}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Test Candidate
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &15004134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 15004133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87164f409d2cfb045969f7096107b6e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!143 &15004135
 CharacterController:
   m_ObjectHideFlags: 0
@@ -211,12 +224,27 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 15004133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04558277, y: 7.58, z: -0.06524229}
+  m_LocalPosition: {x: 0.04558277, y: 6.27, z: -1.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &15004140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 15004133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9820df0ede32ecd43883a1d3fd597742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveVector: {x: 0, y: 0, z: 0}
+  _walkSpeed: 10
+  _jumpSpeed: 6
+  _gravity: 9.81
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e56f3be97eb01704ea5881f30c27d7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
+  _target: {fileID: 15004139}
   _timeDilation: 4
   _zOffset: 8
 --- !u!1 &1636447823
