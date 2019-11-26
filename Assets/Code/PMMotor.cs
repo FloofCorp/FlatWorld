@@ -39,10 +39,12 @@ public class PMMotor : MonoBehaviour {
     }
     private void GravityDrive()
     {
+        verticalVel.y = 0;
         //If the i'm grounded, begin generating gravity
         if (!_god.isGrounded)
         {
-            verticalVel = Mathf.Lerp(verticalVel, _gravity, Time.deltaTime);
+            verticalVel.y -=Physics.gravity;
         }
+
     }
 }
